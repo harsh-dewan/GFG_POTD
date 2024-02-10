@@ -1,0 +1,27 @@
+
+class Solution{
+    static ArrayList<Integer> recamanSequence(int n){
+        // code here
+        if( n == 0 ) {
+            ArrayList<Integer> arrList = new ArrayList<Integer>();
+            arrList.add(0);
+            return arrList;
+        }
+        HashSet<Integer> set = new HashSet<Integer>();
+        int[] dp = new int[n+1];
+        dp[0] = 0;
+        set.add(0);
+        ArrayList<Integer> arrList  = new ArrayList<Integer>();
+        arrList.add(dp[0]);
+        for(int i = 1; i <= n; i++ ) {
+            if( (dp[i-1] - i) > 0 && !set.contains((dp[i-1]-i)) ) {
+                dp[i] = dp[i-1] - i;
+                
+            }
+            else dp[i] = dp[i-1] + i;
+            set.add(dp[i]);
+            arrList.add(dp[i]);
+        }
+        return arrList;
+    }
+}
